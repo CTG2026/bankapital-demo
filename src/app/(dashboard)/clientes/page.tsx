@@ -41,6 +41,7 @@ export default function ClientesPage() {
       .order("created_at", { ascending: false });
 
     if (error) {
+      console.error("[BANKAPITAL] Error al cargar clientes:", error);
       setMensaje({ tipo: "error", texto: "Error al cargar clientes: " + error.message });
     } else {
       setClientes(data ?? []);
@@ -64,6 +65,7 @@ export default function ClientesPage() {
     const { error } = await supabase.from("clientes").insert([form]);
 
     if (error) {
+      console.error("[BANKAPITAL] Error al insertar cliente:", error);
       setMensaje({ tipo: "error", texto: "Error al guardar: " + error.message });
     } else {
       setMensaje({ tipo: "ok", texto: "Cliente guardado correctamente." });
